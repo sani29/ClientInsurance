@@ -1,0 +1,343 @@
+<section>
+    <!-- <div class="row row-spacer-2" *ngIf="loaderShow">
+      <div class="flex-spacer"></div>
+      <mat-progress-spinner
+          mode="indeterminate"
+          color="primary"
+          class="spinner-wrapper"
+          [diameter]="20"
+        ></mat-progress-spinner>
+      <div class="flex-spacer"></div>
+  </div> -->
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+      <!-- PID Column -->
+      <ng-container matColumnDef="policyId">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Policy ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.policyId}} </td>
+      </ng-container>
+    
+      <!-- Date Of Purchase Column -->
+      <ng-container matColumnDef="dateOfPurchase">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> Date Of Purchase </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateOfPurchase}} </td>
+      </ng-container>
+
+      <!-- Customer Id Column -->
+      <ng-container matColumnDef="customerId">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Customer Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerId}} </td>
+      </ng-container>
+
+      <!-- Fuel Column -->
+      <ng-container matColumnDef="fuel">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Fuel </th>
+        <td mat-cell *matCellDef="let element"> {{element.fuel}} </td>
+      </ng-container>
+
+      <!-- Vehicle Segment Column -->
+      <ng-container matColumnDef="vehicleSegment">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Vehicle Segment </th>
+        <td mat-cell *matCellDef="let element"> {{element.vehicleSegment}} </td>
+      </ng-container>
+
+      <!-- Premium Column -->
+      <ng-container matColumnDef="premium">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Premium </th>
+        <td mat-cell *matCellDef="let element"> {{element.premium}} </td>
+      </ng-container>
+    
+      <!-- Bodily Injured Liability Column -->
+      <ng-container matColumnDef="bodilyInjuredLiability">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> Bodily Injured Liability </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-checkbox color="primary" [checked]="element.bodilyInjuredLiability" disabled ></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Personal Injury Protection Column -->
+      <ng-container matColumnDef="personalInjuryProtection">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> Personal Injury Protection </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-checkbox color="primary" [checked]="element.personalInjuryProtection" disabled></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Property Damage Liability Column -->
+      <ng-container matColumnDef="propertyDamageLiability">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> Property Damage Liability </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-checkbox color="primary" [checked]="element.propertyDamageLiability" disabled></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Collision Column -->
+      <ng-container matColumnDef="collision">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> Collision </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-checkbox color="primary" [checked]="element.collision" disabled></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Comprehensive Column -->
+      <ng-container matColumnDef="comprehensive">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> Comprehensive </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-checkbox color="primary" [checked]="element.comprehensive" disabled></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Customer Gender Column -->
+      <ng-container matColumnDef="customerGender">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> Customer Gender </th>
+        <td mat-cell *matCellDef="let element">
+            <span *ngIf= "element.customerGender" >Male</span>
+            <span *ngIf= "!element.customerGender" >Female</span>
+        </td>
+      </ng-container>
+
+      <!-- Customer Income Group Column -->
+      <ng-container matColumnDef="customerIncomeGroup">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Customer Income Group </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerIncomeGroup}} </td>
+      </ng-container>
+
+      <!-- Customer Region Column -->
+      <ng-container matColumnDef="customerRegion">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Customer Region </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerRegion}} </td>
+      </ng-container>
+
+      <!-- Customer Marital Status Column -->
+      <ng-container matColumnDef="customerMaritalStatus">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center"> Customer Marital Status </th>
+        <td mat-cell *matCellDef="let element">
+            <span *ngIf= "element.customerMaritalStatus" > Married </span>
+            <span *ngIf= "!element.customerMaritalStatus" > Single </span>
+        </td>
+      </ng-container>
+
+      <!-- Edit Policy Column -->
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-button mat-icon-button matTooltip="Edit Policy" (click)="open(content_policy, element.policyId)">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+    </table>
+  </section>
+  <!-- <section *ngIf="!flag">
+    <h1 style="color: red;"><p>{{msg}}</p></h1>
+  </section> -->
+
+
+  <!-- Form Area-->
+
+<!-- Edit Policy-->
+<ng-template #content_policy let-modal>
+    <div class="modal-header container">
+        <h4 class="modal-title" id="modal-basic-title"> Edit Policy</h4>
+        <button type="button" class="close" aria-label="Close" 
+        (click)="modal.dismiss('Cross click'); declareSelectedPolicy()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <form class="form-horizontal" #userForm="ngForm" action="#">
+            <div class=" row row-spacer">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Policy Id:</label>
+                </div>
+                <div class="col-md-4">
+                    <label>{{selectedPolicy.policyId}}</label>
+                </div>
+            </div>
+
+            <div class=" row row-spacer">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Date of Purchase:</label>
+                </div>
+                <div class="col-md-4">
+                    <label>{{selectedPolicy.dateOfPurchase}}</label>
+                </div>
+            </div>
+
+            <div class=" row row-spacer">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Customer Id:</label>
+                </div>
+                <div class="col-md-4">
+                    <label>{{selectedPolicy.customerId}}</label>
+                </div>
+            </div>
+
+            <div class=" row row-spacer">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Fuel:</label>
+                </div>
+                <div class="col-md-4">
+                    <label>{{selectedPolicy.fuel}}</label>
+                </div>
+            </div>
+
+            <div class=" row row-spacer">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Vehicle Segment:</label>
+                </div>
+                <div class="col-md-4">
+                    <label>{{selectedPolicy.vehicleSegment}}</label>
+                </div>
+            </div>
+
+            <div class=" row row-spacer">
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Premium:</label>
+                </div>
+                <div class="col-md-4">
+                        <input type="text" maxlength="7" min="0" max="1000000" required
+                    [(ngModel)]="selectedPolicy.premium" name="premium">
+                </div>
+            </div>
+
+            <div class=" row row-spacer" >
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Bodily Injured Liability:</label>
+                </div>
+                <div class="col-md-4">
+                    <div class="flex-container">
+                        <mat-checkbox color="primary" name="bil"
+                        [(ngModel)]="selectedPolicy.bodilyInjuredLiability"></mat-checkbox>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" row row-spacer" >
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Personal Injury Protection:</label>
+                </div>
+                <div class="col-md-4">
+                    <div class="flex-container">
+                        <mat-checkbox color="primary" name="pip"
+                        [(ngModel)]="selectedPolicy.personalInjuryProtection"></mat-checkbox>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" row row-spacer" >
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Property Damage Liability:</label>
+                </div>
+                <div class="col-md-4">
+                    <div class="flex-container">
+                        <mat-checkbox color="primary" name="pdl"
+                        [(ngModel)]="selectedPolicy.propertyDamageLiability"></mat-checkbox>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" row row-spacer" >
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Collision:</label>
+                </div>
+                <div class="col-md-4">
+                    <div class="flex-container">
+                        <mat-checkbox color="primary" name="collision"
+                        [(ngModel)]="selectedPolicy.collision"></mat-checkbox>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" row row-spacer" >
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Comprehensive:</label>
+                </div>
+                <div class="col-md-4">
+                    <div class="flex-container">
+                        <mat-checkbox color="primary" name="comprehensive"
+                        [(ngModel)]="selectedPolicy.comprehensive"></mat-checkbox>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" row row-spacer" >
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Customer Gender:</label>
+                </div>
+                <div class="col-md-4">
+                    <label *ngIf="selectedPolicy.customerGender">Male</label>
+                    <label *ngIf="!selectedPolicy.customerGender">Female</label>
+                </div>
+            </div>
+
+            <div class="row row-spacer" >
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Customer Income Group:</label>
+                </div>
+                <div class="col-md-4">
+                    <!-- <select name="cig" id="cig" [(ngModel)]="selectedPolicy.customerIncomeGroup">
+                        <option value="0-$25k"> 0-$25k </option>
+                        <option value="$25-$70k"> $25-$70k </option>
+                        <option value=">$70k"> >$70k </option>
+                    </select> -->
+                    <label>{{selectedPolicy.customerIncomeGroup}}</label>
+                </div>
+            </div>
+
+            <div class="row row-spacer" >
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Customer Region:</label>
+                </div>
+                <div class="col-md-4">
+                    <select name="cr" id="cr" 
+                [(ngModel)]="selectedPolicy.customerRegion">
+                    <option value="East">East</option>
+                    <option value="West">West</option>
+                    <option value="North">North</option>
+                    <option value="South">South</option>
+                </select>
+                </div>
+            </div>
+
+            <div class=" row row-spacer" >
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label>Customer Martial Status:</label>
+                </div>
+                <div class="col-md-4">
+                    <!-- <select name="cms" id="cms" 
+                [(ngModel)]="selectedPolicy.customerMaritalStatus">
+                    <option value=true>Married</option>
+                    <option value=false>Single</option>
+                </select> -->
+                    <label *ngIf="selectedPolicy.customerMaritalStatus"> Married </label>
+                    <label *ngIf="!selectedPolicy.customerMaritalStatus"> Single </label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" name="add_policy_btn" class="btn" mat-raised-button color="primary" 
+        (click)="onAction();modal.close('Save click')">Save</button>
+    </div>
+</ng-template>

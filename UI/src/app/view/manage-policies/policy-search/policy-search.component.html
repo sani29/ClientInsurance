@@ -1,0 +1,22 @@
+<section>
+    <mat-form-field appearance="fill">
+        <mat-label>Search By</mat-label>
+        <mat-select #searchby>
+            <mat-option value='policyid'>Policy Id</mat-option>
+            <mat-option value='customerid'>Customer Id</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <span></span>
+    <mat-form-field>
+        <mat-label>Enter {{searchby.value}}</mat-label>
+        <input matInput type="text" #id>
+        <button *ngIf="id.value" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="id.value=''">
+            <mat-icon>clear</mat-icon>
+        </button>
+        <button [disabled]="!id.value" mat-button matSuffix mat-icon-button (click)="searchPolicy(id.value,searchby.value)">
+            <mat-icon>search</mat-icon>
+        </button>
+        <span></span>
+    </mat-form-field>
+    
+</section>

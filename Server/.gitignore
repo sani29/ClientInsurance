@@ -1,0 +1,13 @@
+node_modules/
+logs/
+uploads/
+
+dist/
+test/
+.serverless/
+.DS_Store
+package-lock.json
+
+.remainingTasks
+
+.csv
