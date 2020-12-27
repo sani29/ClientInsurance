@@ -11,7 +11,8 @@ export const PolicyModel = {
     getOne,
     scan,
     update,
-    getByCustomerId
+    getByCustomerId,
+    getByRegion
 }
 
 function create(attrs, callback){
@@ -32,9 +33,17 @@ function getOne(attrs, callback) {
 }
 
 function getByCustomerId(attrs, callback) {
-    model._findOne(attrs, (error, doc) => {
+    model._find(attrs, (error, doc) => {
       if (error) { callback(error) }
-      if(doc) console.log('[Info] Customer Found: ' + doc.customerId)
+      if(doc) console.log('[Info] Customer Found: ' + attrs.customerId)
+      return callback(null, doc)
+    })
+}
+
+function getByRegion(attrs, callback) {
+    model._find(attrs, (error, doc) => {
+      if (error) { callback(error) }
+      if(doc) console.log('[Info] Region Found: ' + attrs.customerRegion)
       return callback(null, doc)
     })
 }

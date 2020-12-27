@@ -6,6 +6,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 export class EventTriggerService {
 
   @Output() searchType: EventEmitter<Object> = new EventEmitter();
+  @Output() regionType: EventEmitter<Object> = new EventEmitter();
 
   constructor() { }
 
@@ -13,6 +14,12 @@ export class EventTriggerService {
     this.searchType.emit({
       "id": id,
       "type": type
+    })
+  }
+
+  setRegionType(region: String){
+    this.regionType.emit({
+      "region": region
     })
   }
 }

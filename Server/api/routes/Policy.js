@@ -11,7 +11,7 @@ PolicyRouter.get('/scan', scan)
 PolicyRouter.get('/:policyId', getOne)
 PolicyRouter.get('/customer/:customerId', getByCustomerId)
 PolicyRouter.patch('/:policyId', update)
-// PolicyRouter.get('/graph/:region', getByRegion)
+PolicyRouter.get('/region/:customerRegion', getByRegion)
 // PolicyRouter.delete('/:policyId', remove)
 
 export { PolicyRouter }
@@ -58,6 +58,25 @@ function getByCustomerId (request, response) {
     let { params } = request
 
     PolicyModel.getByCustomerId(params, (error, data) => {
+        let responseBody
+        if (error && error.constructor === ResponseBody) {
+        response.statusMessage = error.message
+        return response.status(error.statusCode).json(error)
+        } else if (error) {
+        responseBody = new ResponseBody(500, error.toString())
+        response.statusMessage = responseBody.message
+        return response.status(responseBody.statusCode).json(responseBody)
+        }
+        responseBody = new ResponseBody(201, 'OK', data)
+        response.statusMessage = responseBody.message
+        response.status(responseBody.statusCode).json(responseBody)
+    })
+}
+
+function getByRegion (request, response) {
+    let { params } = request
+
+    PolicyModel.getByRegion(params, (error, data) => {
         let responseBody
         if (error && error.constructor === ResponseBody) {
         response.statusMessage = error.message

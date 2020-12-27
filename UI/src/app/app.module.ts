@@ -14,6 +14,8 @@ import { RecordHeaderComponent } from './view/monthly-record/record-header/recor
 import { RecordBodyComponent } from './view/monthly-record/record-body/record-body.component';
 import { PolicySearchComponent } from './view/manage-policies/policy-search/policy-search.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ChartsModule } from 'ng2-charts';
+
 
 // Material Modules
 import {MatTabsModule} from '@angular/material/tabs';
@@ -49,6 +51,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule,
 
     //Material Modules
     MatTabsModule,

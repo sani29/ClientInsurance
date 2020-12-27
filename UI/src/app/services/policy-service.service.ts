@@ -20,6 +20,10 @@ export class PolicyServiceService {
     return this.webService.get(`v1/policy/customer/${customerId}`);
   }
 
+  getByCustomerRegion(region: string){
+    return this.webService.get(`v1/policy/region/${region}`);
+  }
+
   updatePolicy(policyId: string, dateOfPurchase: string, customerId: string, fuel: string, vehicleSegment: string,
                 premium: string, bodilyInjuredLiability: boolean, personalInjuryProtection: boolean, propertyDamageLiability: boolean, 
                 collision: boolean, comprehensive: boolean, customerGender: boolean, customerIncomeGroup: string,

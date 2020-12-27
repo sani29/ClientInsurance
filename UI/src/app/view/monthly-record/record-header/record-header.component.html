@@ -1,1 +1,11 @@
-<p>record-header works!</p>
+<section>
+    <mat-form-field appearance="fill">
+        <mat-label>Select Region</mat-label>
+        <mat-select #region>
+            <mat-option value='east' (click)='selectedRegion(region.value)'>East</mat-option>
+            <mat-option value='west' (click)='selectedRegion(region.value)'>West</mat-option>
+            <mat-option value='north' (click)='selectedRegion(region.value)'>North</mat-option>
+            <mat-option value='south' (click)='selectedRegion(region.value)'>South</mat-option>
+        </mat-select>
+    </mat-form-field>  
+</section>

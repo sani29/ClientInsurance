@@ -2,7 +2,7 @@
 
 import fs from 'fs-extra'
 import path from 'path'
-import morgan from 'morgan'
+import morgan from 'morgan' // HTTP request logger middleware for node.js
 import rfs from 'rotating-file-stream'
 import moment from 'moment-timezone'
 
@@ -93,7 +93,9 @@ export class RequestLogger {
       const LogDir = path.join(LOG_DIR, year, month, day)
       const fileName = [year, month, day + '.log'].join('_')
       const file = path.join(LogDir, fileName)
-  
+
+      //Ensures that the file exists. If the file that is requested to be created is in directories that do not exist,
+      // these directories are created. If the file already exists, it is NOT MODIFIED.
       fs.ensureFileSync(file)
       return file
     }
