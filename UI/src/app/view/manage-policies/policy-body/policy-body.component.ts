@@ -30,15 +30,19 @@ export class PolicyBodyComponent implements OnInit {
     this.eventTriggerService.searchType.subscribe((data) =>{
       if(data['type'] == 'policyid'){
         this.policyService.getPolicy(data['id']).subscribe((data) => {
+          //console.log(data['data']);
           this.dataSource = new Array();
           this.dataSource.push(data['data']);
           this.table.renderRows();
         })
       } else{
         this.policyService.getByCustomerId(data['id']).subscribe((data) => {
+          //console.log(data['data']);
           this.dataSource = new Array();
-          this.dataSource.push(data['data']);
-          this.table.renderRows();
+          for (const i of data['data']) {
+            this.dataSource.push(i);
+            this.table.renderRows();
+          }
         })
       }
 
